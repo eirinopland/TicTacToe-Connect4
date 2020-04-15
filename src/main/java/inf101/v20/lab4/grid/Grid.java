@@ -10,7 +10,7 @@ import java.util.List;
  *
  */
 public class Grid<T> implements IGrid<T>, Iterable<T>{
-	private List<T> cells;
+	protected List<T> cells;
 	private int height;
 	private int width;
 
@@ -58,7 +58,7 @@ public class Grid<T> implements IGrid<T>, Iterable<T>{
 		cells.set(coordinateToIndex(x, y), elem);
 	}
 
-	private int coordinateToIndex(int x, int y) {
+	protected int coordinateToIndex(int x, int y) {
 		return x + y*width;
 	}
 	

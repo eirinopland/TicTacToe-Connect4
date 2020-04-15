@@ -114,7 +114,7 @@ s	 * Initializes a JFrame in which we place the game
 	//Class that defines what happens (i.e: the color changes) when a panel is clicked
 	class BoxListener extends MouseAdapter{
 		public void mousePressed(MouseEvent me){
-			JPanel clickedPanel =(JPanel)me.getSource(); // get the reference to the box that was clicked 
+			JPanel clickedPanel =(JPanel)me.getSource(); // get the reference to the box that was clicked
 			clickedPanel.setBackground(clickedPanel.getBackground()==Color.BLACK ? Color.GREEN : Color.BLACK);
 		}
 	}
