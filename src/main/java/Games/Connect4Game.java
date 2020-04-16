@@ -10,7 +10,7 @@ import Players.AIPlayer;
 import Players.HumanPlayer;
 import Players.IPlayer;
 
-public class Connect4Game {
+public class Connect4Game implements IGame{
 	private final List<IPlayer> players; 
 	private final Connect4Board board;
 	private GameMarkers marker;
@@ -38,6 +38,7 @@ public class Connect4Game {
 		}	
 	}
 	
+	@Override
 	public void startGame() {
 		Scanner in = new Scanner(System.in);
 		do {
@@ -47,6 +48,7 @@ public class Connect4Game {
 		} while (in.nextInt() == 1);
 	}
 	
+	@Override
 	public void doTurns() {
 		boolean finished = false; 
 		board.printBoard();

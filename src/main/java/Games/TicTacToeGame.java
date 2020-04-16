@@ -11,7 +11,7 @@ import Players.HumanPlayer;
 import Players.IPlayer;
 
 
-public class TicTacToeGame {
+public class TicTacToeGame implements IGame{
 	private final List<IPlayer> players; 
 	private final TicTacToeBoard board;
 	private GameMarkers marker; 
@@ -39,6 +39,7 @@ public class TicTacToeGame {
 		}	
 	}
 
+	@Override
 	public void startGame() {
 		Scanner in = new Scanner(System.in);
 		do {
@@ -48,6 +49,7 @@ public class TicTacToeGame {
 		} while (in.nextInt() == 1);
 	}
 	
+	@Override
 	public void doTurns() {
 		boolean finished = false; 
 		board.printBoard();

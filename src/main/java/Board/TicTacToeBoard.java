@@ -1,14 +1,22 @@
 package Board;
 
+import Games.IGame;
 import Markers.GameMarkers;
 import Markers.Markers;
 import inf101.v20.lab4.grid.Grid;
 
-public class TicTacToeBoard extends Grid<Markers> {
+public class TicTacToeBoard extends Grid<Markers> implements IBoard{
+	
+	/**
+	 * Construct a grid with the given dimensions.
+	 * @param width
+	 * @param height
+	 */
 	public TicTacToeBoard(int width, int height) {
 		super(width, height, null);
 	}
 	
+	@Override
 	public void dropMarker(int column, int row, GameMarkers marker) {
 		if(column < 0 || column >= getWidth() || row < 0 || row >= getHeight()) {
 			throw new IndexOutOfBoundsException();
@@ -21,18 +29,14 @@ public class TicTacToeBoard extends Grid<Markers> {
 		get(column, row).setMarker(marker);
 
 	}
-	//Trengs denne metoden? Gjør ikke initializeBoard det samme? 
-	public void clearBoard() { 
-		for(int i = 0; i < cells.size(); i++) {
-			cells.set(i, null);
-		}
-	}
 	
+	@Override
 	public boolean isTaken(int column, int row) {
 		Markers m = get(column, row);
 		return m.isFilled();		
 	}
 
+	@Override
 	public boolean checkWin(int col, int row) {
 		if(checkHorizontal(col, row)) {
 			return true;
@@ -46,6 +50,7 @@ public class TicTacToeBoard extends Grid<Markers> {
 		return false; 
 	}
 	
+	@Override
 	public boolean checkHorizontal(int col, int row) {
 		GameMarkers m = get(col, row).getMarker();
 		int count = 1; 
@@ -60,6 +65,7 @@ public class TicTacToeBoard extends Grid<Markers> {
 		return count == 3;
 	}
 	
+	@Override
 	public boolean checkVertical(int col, int row) {
 		GameMarkers m = get(col, row).getMarker();
 		int count = 1;
@@ -74,6 +80,7 @@ public class TicTacToeBoard extends Grid<Markers> {
 		return count == 3;
 	}
 	
+	@Override
 	public boolean checkDiagonal(int col, int row) {
 		GameMarkers m = get(col, row).getMarker();
 		int count = 1;
@@ -104,6 +111,7 @@ public class TicTacToeBoard extends Grid<Markers> {
 		return count == 3; 
 	}
 
+	@Override
 	public boolean isDraw() {
 		for (int col = 0; col < getWidth(); col++) {
 			for (int row = 0; row < getHeight(); row++) {
@@ -115,6 +123,7 @@ public class TicTacToeBoard extends Grid<Markers> {
 		return true; 
 	}
 	
+	@Override
 	public void printBoard() {
 		System.out.println("________________");
 		for (int row = 0; row < getHeight(); row++) {
@@ -127,6 +136,7 @@ public class TicTacToeBoard extends Grid<Markers> {
 		}
 	}
 
+	@Override
 	public void initializeBoard() {
 		cells.clear();
 		for(int i = 0; i < getHeight()*getWidth(); i++) {
@@ -134,4 +144,5 @@ public class TicTacToeBoard extends Grid<Markers> {
 		}
 		
 	}
+
 }

@@ -33,6 +33,6 @@ public class AIPlayer implements IPlayer{
 	@Override
 	public int pickRow(int max) {
 		int r = random.nextInt() & 7;
-		return r;
+		return r; 
 	}
 }
