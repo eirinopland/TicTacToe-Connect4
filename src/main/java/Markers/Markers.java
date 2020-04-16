@@ -11,11 +11,15 @@ private GameMarkers marker;
 	public String getMarkerSymbol() {
 		switch(marker) {
 		case CROSS:
-			return "X";
+			return "\u274c";
 		case CIRCLE:
-			return "O";
+			return "\u2B55";
+		case YELLOW:
+			return "\ud83d\udfe1";
+		case RED:
+			return "\uD83D\uDD34";
 		case SPACE: 
-			return " ";
+			return "  ";
 		}
 		return null;
 	}
