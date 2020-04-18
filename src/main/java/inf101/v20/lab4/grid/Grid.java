@@ -10,7 +10,7 @@ import java.util.List;
  *
  */
 public class Grid<T> implements IGrid<T>, Iterable<T>{
-	protected List<T> cells;
+	public List<T> cells;
 	private int height;
 	private int width;
 
