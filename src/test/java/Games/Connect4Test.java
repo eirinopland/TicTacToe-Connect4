@@ -12,6 +12,7 @@ public class Connect4Test {
 	private Connect4Game game = new Connect4Game(0);
 	Connect4Board board = new Connect4Board(7, 6);
 	
+	
 //	@Test
 //	public void checkWinTest() {
 //		game.startGame();

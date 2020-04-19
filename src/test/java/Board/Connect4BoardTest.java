@@ -13,7 +13,7 @@ public class Connect4BoardTest {
 	Connect4Board board = new Connect4Board(7, 6);
 	
 	@Test
-	public void initializeBoard() {
+	public void initializeBoardTest() {
 		int width = 7;
 		int height = 6;
 		Connect4Board board1 = new Connect4Board(width, height);
@@ -49,7 +49,7 @@ public class Connect4BoardTest {
 		board.dropMarker(2, 4, GameMarkers.YELLOW);
 		board.dropMarker(3, 4, GameMarkers.YELLOW);
 		board.dropMarker(4, 4, GameMarkers.YELLOW);
-		board.dropMarker(4, 4, GameMarkers.YELLOW);
+		board.dropMarker(5, 4, GameMarkers.YELLOW);
 	
 		Markers mark = ((Markers) board.get(2, 4));
 		assertEquals(mark.getMarker(), GameMarkers.YELLOW);
