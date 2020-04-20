@@ -1,6 +1,7 @@
 package Games;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ public class Connect4Game implements IGame{
 	private final List<IPlayer> players; 
 	private final Connect4Board board;
 	private GameMarkers marker;
+	private final int winCondition = 4;
 	
 	public Connect4Game(int mode) {
 		players = new ArrayList<IPlayer>();
@@ -52,6 +54,7 @@ public class Connect4Game implements IGame{
 	public void doTurns() {
 		boolean finished = false; 
 		board.printBoard();
+		Collections.shuffle(players); //Changes who starts the game randomly
 		while (!finished) {	
 			for (IPlayer player : players) {
 				System.out.println("It is " + player.getMarker() + "'s turn!");
@@ -63,7 +66,7 @@ public class Connect4Game implements IGame{
 				} while(row < 0);
 				board.dropMarker(col, row, player.getMarker());
 				board.printBoard();
-				if(board.checkWin(col, row)) {
+				if(board.checkWin(col, row, winCondition)) {
 					System.out.println("The winner is: " + player.getName());
 					finished = true; 
 					break; 
@@ -80,6 +83,11 @@ public class Connect4Game implements IGame{
 	
 	public int validMove(int col, IPlayer player) {
 		if(col >= board.getWidth() || col < 0) {
+			System.out.println("Not a valid move, please enter a column between 1-7!");
+			return -1;
+		}
+		if (isFull(col)) {
+			System.out.println("The column is full, try another one!");
 			return -1;
 		}
 		for(int i = 0; i < board.getHeight(); i++) {
@@ -90,5 +98,18 @@ public class Connect4Game implements IGame{
 		}
 		return -1;
 	}
+	
+	/**
+	 * 
+	 * @param col
+	 * @return true if a column is full
+	 */
+	
+	public boolean isFull(int col) {
+		return board.get(col, board.getHeight()-1).getMarker() != GameMarkers.SPACE;
+	}
+	//Sette denne metoden i Board? 
+	
+
 	
 }

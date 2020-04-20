@@ -26,13 +26,13 @@ public class AIPlayer implements IPlayer{
 
 	@Override
 	public int pickColumn(int max) {
-		int r = random.nextInt() & 7;
+		int r = random.nextInt(max);
 		return r;
 	}
 
 	@Override
 	public int pickRow(int max) {
-		int r = random.nextInt() & 7;
+		int r = random.nextInt(max);
 		return r; 
 	}
 }

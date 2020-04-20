@@ -11,6 +11,7 @@ import Markers.Markers;
 public class Connect4Test {
 	private Connect4Game game = new Connect4Game(0);
 	Connect4Board board = new Connect4Board(7, 6);
+	private final int winCondition = 4; 
 	
 	
 //	@Test
@@ -27,7 +28,7 @@ public class Connect4Test {
 		board.set(1, 4, new Markers(GameMarkers.RED));
 		board.set(0, 4, new Markers(GameMarkers.RED));
 		
-		assertEquals(board.checkWin(0, 4), true); //Win conditions instead of 4? 
+		assertEquals(board.checkWin(0, 4, winCondition), true); //Win conditions instead of 4? 
 	}
 	
 	@Test
@@ -38,7 +39,7 @@ public class Connect4Test {
 		board.set(4, 2, new Markers(GameMarkers.RED));
 		board.set(4, 1, new Markers(GameMarkers.RED));
 		
-		assertEquals(board.checkWin(4, 1), true);
+		assertEquals(board.checkWin(4, 1, winCondition), true);
 		
 		//Three in a row, should return false
 		board.initializeBoard();
@@ -46,7 +47,7 @@ public class Connect4Test {
 		board.set(4, 3, new Markers(GameMarkers.RED));
 		board.set(4, 2, new Markers(GameMarkers.RED));
 		
-		assertEquals(board.checkWin(4, 2), false);
+		assertEquals(board.checkWin(4, 2, winCondition), false);
 	}
 	
 	@Test
@@ -57,7 +58,7 @@ public class Connect4Test {
 		board.set(2, 2, new Markers(GameMarkers.RED));
 		board.set(3, 1, new Markers(GameMarkers.RED));
 		
-		assertEquals(board.checkWin(3, 1), true);
+		assertEquals(board.checkWin(3, 1, winCondition), true);
 		
 		board.initializeBoard();
 		board.set(4, 4, new Markers(GameMarkers.RED));
@@ -65,7 +66,9 @@ public class Connect4Test {
 		board.set(2, 2, new Markers(GameMarkers.RED));
 		board.set(1, 1, new Markers(GameMarkers.RED));
 		
-		assertEquals(board.checkWin(1, 1), true);
+		assertEquals(board.checkWin(1, 1, winCondition), true);
 	}
+	
+	
 
 }

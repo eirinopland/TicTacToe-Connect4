@@ -1,6 +1,7 @@
 package Games;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ import Players.IPlayer;
 public class TicTacToeGame implements IGame{
 	private final List<IPlayer> players; 
 	private final TicTacToeBoard board;
-	private GameMarkers marker; 
+	private final int winCondition = 3;
 	
 	public TicTacToeGame(int mode) {
 		players = new ArrayList<IPlayer>();
@@ -53,6 +54,7 @@ public class TicTacToeGame implements IGame{
 	public void doTurns() {
 		boolean finished = false; 
 		board.printBoard();
+		Collections.shuffle(players); //Changes who starts the game 
 		while (!finished) {	
 			for (IPlayer player : players) {
 				System.out.println("It is " + player.getMarker() + "'s turn!");
@@ -64,7 +66,7 @@ public class TicTacToeGame implements IGame{
 				} while(!validMove(col, row, player));
 				board.dropMarker(col, row, player.getMarker());
 				board.printBoard();
-				if(board.checkWin(col, row)) {
+				if(board.checkWin(col, row, winCondition)) {
 					System.out.println("The winner is: " + player.getName());
 					finished = true; 
 					break; 
@@ -80,7 +82,11 @@ public class TicTacToeGame implements IGame{
 	
 	public boolean validMove(int col, int row, IPlayer player) {
 		if(col >= board.getWidth() || col < 0 || row >= board.getHeight() || row < 0) {
+			System.out.println("Not a valid move! Please type row and column number between 1-3.");
 			return false; 
+		}
+		if (board.isTaken(col, row)) {
+			System.out.println("This cell is taken! Please try another one.");
 		}
 		return !board.isTaken(col, row);
 	}

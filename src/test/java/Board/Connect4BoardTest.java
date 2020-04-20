@@ -1,7 +1,10 @@
 package Board;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Games.Connect4Game;
@@ -9,8 +12,16 @@ import Markers.GameMarkers;
 import Markers.Markers;
 
 public class Connect4BoardTest {
+	private Connect4Board board;
 	Connect4Game game = new Connect4Game(1);
-	Connect4Board board = new Connect4Board(7, 6);
+	//Connect4Board board = new Connect4Board(7, 6);
+	
+	
+	@BeforeEach
+	public void setUp() {
+		board = new Connect4Board(7, 6);
+		board.initializeBoard();
+	}
 	
 	@Test
 	public void initializeBoardTest() {
@@ -54,6 +65,23 @@ public class Connect4BoardTest {
 		Markers mark = ((Markers) board.get(2, 4));
 		assertEquals(mark.getMarker(), GameMarkers.YELLOW);
 		}
+	
+	@Test
+	public void testEmptyBoardIsNotDraw() {
+		board.initializeBoard();
+		assertFalse(board.isDraw());
+	}
+	
+	@Test
+	public void testFullBoardIsDraw() {
+		board.initializeBoard(); 
+		for (int i = 0; i < board.getWidth(); i++) {
+			for (int j = 0; j < board.getHeight(); j++) {
+				board.get(i, j).setMarker(GameMarkers.YELLOW);
+			}
+		}
+		assertTrue(board.isDraw());
+	}
 		
 }
 
