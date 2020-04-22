@@ -6,8 +6,8 @@ import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
-import inf101.v20.lab4.grid.Grid;
-import inf101.v20.lab4.grid.IGrid;
+import grid.Grid;
+import grid.IGrid;
 
 public class GridTest {
 	Random random = new Random();

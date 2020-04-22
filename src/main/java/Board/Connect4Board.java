@@ -1,5 +1,6 @@
 package Board;
 
+import Markers.GameMarkers;
 
 public class Connect4Board extends Board{
 
@@ -24,6 +25,16 @@ public class Connect4Board extends Board{
 			}	
 			System.out.println();
 		}
-		System.out.println("___________________________________");
+		System.out.println("____________________________________");
+	}
+	
+	/**
+	 * 
+	 * @param col
+	 * @return true if a column is full
+	 */
+	
+	public boolean isFull(int col) {
+		return get(col, getHeight()-1).getMarker() != GameMarkers.SPACE;
 	}
 }

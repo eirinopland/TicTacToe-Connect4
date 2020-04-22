@@ -4,24 +4,59 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Games.Connect4Game;
 import Markers.GameMarkers;
 import Markers.Markers;
+import Players.HumanPlayer;
+import Players.IPlayer;
 
 public class Connect4BoardTest {
-	private Connect4Board board;
 	Connect4Game game = new Connect4Game(1);
-	//Connect4Board board = new Connect4Board(7, 6);
+	Connect4Board board = new Connect4Board(7, 6);
+	IPlayer player = new HumanPlayer(GameMarkers.YELLOW, "Player1");
 	
+//	@BeforeEach
+//	public void setUp() {
+//		board = new Connect4Board(7, 6);
+//		board.initializeBoard();
+//	}
 	
-	@BeforeEach
-	public void setUp() {
-		board = new Connect4Board(7, 6);
+	/**
+	 * Tests if it is possible to add a marker to an empty board.
+	 */
+	@Test
+	void testAddToEmptyBoard() {
 		board.initializeBoard();
+		Connect4Board board = new Connect4Board(7,6);
+		IPlayer player = new HumanPlayer(GameMarkers.YELLOW, "Player1");
+		board.get(4, 3).setMarker(player.getMarker());
+		assertEquals(board.get(4, 3), "\ud83d\udfe1");
 	}
+	
+	/**
+	 * Tests that we can put a marker in every cell of the board. 
+	 */
+	@Test
+	void testCanPutMarker() {
+		board.initializeBoard();
+		Connect4Board board = new Connect4Board(7,6);
+	}
+	
+	/**
+	 * Tests that it is not possible to put a marker if it is already taken. 
+	 */
+	@Test
+	void testCanNotPlaceMarkerIfTaken() {
+		board.initializeBoard();
+		board.dropMarker(2, 2, GameMarkers.YELLOW);
+		assertEquals(game.validMove(2, player), true);
+	}		
+	
 	
 	@Test
 	public void initializeBoardTest() {
@@ -32,6 +67,12 @@ public class Connect4BoardTest {
 		for (int i = 0; i < (width * height); i++) {
 			assertEquals(board1.cells.get(i), GameMarkers.SPACE);
 		}
+	}
+	
+	@Test
+	void testInitializing() {
+		board.initializeBoard();
+		board.dropMarker(2, 3, player.getMarker());
 	}
 	
 	@Test

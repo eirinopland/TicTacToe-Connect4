@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import inf101.v20.lab4.grid.Grid;
+import grid.Grid;
 
 /**
  * Skeleton GUI class for a clickable grid-based GUI with two buttons

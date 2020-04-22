@@ -1,16 +1,24 @@
 package Games;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
 import Board.Connect4Board;
 import Markers.GameMarkers;
 import Markers.Markers;
+import Players.HumanPlayer;
+import Players.IPlayer;
 
 public class Connect4Test {
-	private Connect4Game game = new Connect4Game(0);
 	Connect4Board board = new Connect4Board(7, 6);
+	private Connect4Game game = new Connect4Game(0);
+	private ArrayList<IPlayer> players;
+	IPlayer player = new HumanPlayer(GameMarkers.RED, "Player1");
+	
 	private final int winCondition = 4; 
 	
 	
@@ -20,8 +28,48 @@ public class Connect4Test {
 //		assertEquals(board.checkWin(board.getWidth(), board.getHeight()), true);
 //	}
 	
+	/**
+	 * Tests that there are two players when starting a new game
+	 * Checks that there are 7*6 = 42 empty cells when starting a game
+	 */
+	@Test
+	void testStartNewGame() {
+		Connect4Game game = new Connect4Game(0);
+		assertEquals(game.players.size(), 2);
+		Connect4Board board = new Connect4Board(7, 6);
+		assertEquals(board.cells.size(), board.getWidth()*board.getHeight());
+//		board.initializeBoard();
+//		assertEquals(board.cells, GameMarkers.SPACE);
+//		assertEquals(board.checkWin(4, 5, winCondition), null);
+	}
+	
+	@Test
+	void testPlayersHaveNotMadeMove() {
+		
+	}
+	
+	/**
+	 * Tests if a move is valid 
+	 */
+	@Test
+	void testValidMove() {
+		Connect4Board board = new Connect4Board(7, 6);
+		board.initializeBoard();
+//		board.dropMarker(2, 2, GameMarkers.RED);
+//		assertEquals(game.validMove(2, player), -1);
+		assertEquals(game.validMove(8, player), -1); //-1 means that it is not a valid move 
+		board.dropMarker(1, 0, player.getMarker());
+		board.dropMarker(1, 1, player.getMarker());
+		board.dropMarker(1, 2, player.getMarker());
+		board.dropMarker(1, 3, player.getMarker());
+		board.dropMarker(1, 4, player.getMarker());
+		board.dropMarker(1, 5, player.getMarker());
+		assertEquals(game.validMove(1, player), -1);
+	}
+	
 	@Test
 	public void horizontalWinTest() {
+		Connect4Board board = new Connect4Board(7, 6);
 		board.initializeBoard();
 		board.set(3, 4, new Markers(GameMarkers.RED));
 		board.set(2, 4, new Markers(GameMarkers.RED));

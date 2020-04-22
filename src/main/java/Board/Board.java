@@ -1,7 +1,7 @@
 package Board;
 import Markers.GameMarkers;
 import Markers.Markers;
-import inf101.v20.lab4.grid.Grid;
+import grid.Grid;
 
 public class Board extends Grid<Markers>{
 	

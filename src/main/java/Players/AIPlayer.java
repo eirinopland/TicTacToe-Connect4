@@ -10,8 +10,9 @@ public class AIPlayer implements IPlayer{
 	public static final Random random = new Random();
 	private String name;
 	
-	public AIPlayer(GameMarkers marker) {
+	public AIPlayer(GameMarkers marker, String name) {
 		this.marker = marker;
+		this.name = name; 
 	}
 
 	@Override

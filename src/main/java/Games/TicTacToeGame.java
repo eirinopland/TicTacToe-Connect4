@@ -23,18 +23,13 @@ public class TicTacToeGame implements IGame{
 		
 		switch(mode) {
 			case 0: {
-				players.add(new HumanPlayer(GameMarkers.CROSS));
-				players.add(new HumanPlayer(GameMarkers.CIRCLE));
+				players.add(new HumanPlayer(GameMarkers.CROSS, "Player1"));
+				players.add(new HumanPlayer(GameMarkers.CIRCLE, "Player2"));
 				break;
 			}
 			case 1: {
-				players.add(new HumanPlayer(GameMarkers.CROSS));
-				players.add(new AIPlayer(GameMarkers.CIRCLE));
-				break;
-			}
-			case 2: {
-				players.add(new AIPlayer(GameMarkers.CROSS));
-				players.add(new AIPlayer(GameMarkers.CIRCLE));
+				players.add(new HumanPlayer(GameMarkers.CROSS, "Human player"));
+				players.add(new AIPlayer(GameMarkers.CIRCLE, "AI player"));
 				break;
 			}		
 		}	
@@ -54,10 +49,10 @@ public class TicTacToeGame implements IGame{
 	public void doTurns() {
 		boolean finished = false; 
 		board.printBoard();
-		Collections.shuffle(players); //Changes who starts the game 
+		Collections.shuffle(players); //Changes who starts the game randomly
 		while (!finished) {	
 			for (IPlayer player : players) {
-				System.out.println("It is " + player.getMarker() + "'s turn!");
+				System.out.println("Turn: " + player.getName() + "(" + player.getMarker() + ")");
 				int col;
 				int row;
 				do {

@@ -12,26 +12,27 @@ public class GameMain {
 		System.out.println("2) Connect4? ");
 		Scanner sc = new Scanner(System.in);
 		int gameChoice = sc.nextInt();
-		if (gameChoice == 1) {
-			System.out.println("Type 0 for a two-player game, 1 for a one-player game");
-			int gameMode = sc.nextInt();
-			if(gameMode == 0) {
+		System.out.println("Choose players:");
+		System.out.println("1) Human against human");
+		System.out.println("2) Human against AI");
+		int gameMode = sc.nextInt();
+		
+		if (gameChoice == 1) {			
+			if(gameMode == 1) {
 				TicTacToeGame game = new TicTacToeGame(0);
 				game.startGame();
 			}
-			if(gameMode == 1) {
+			if(gameMode == 2) {
 				TicTacToeGame game = new TicTacToeGame(1);
 				game.startGame();
 			}
 		}
 		if (gameChoice == 2) {
-			System.out.println("Type 0 for a two-player game, 1 for a one-player game");
-			int gameMode = sc.nextInt();
-			if(gameMode == 0) {
+			if(gameMode == 1) {
 				Connect4Game game = new Connect4Game(0);
 				game.startGame();
 			}
-			if(gameMode == 1) {
+			if(gameMode == 2) {
 				Connect4Game game = new Connect4Game(1);
 				game.startGame();
 			}

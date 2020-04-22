@@ -9,8 +9,9 @@ public class HumanPlayer implements IPlayer {
 	private GameMarkers marker;
 	private String name; 
 	
-	public HumanPlayer(GameMarkers marker) {
+	public HumanPlayer(GameMarkers marker, String name) {
 		this.marker = marker; 
+		this.name = name; 
 	}
 
 	@Override

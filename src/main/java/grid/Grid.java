@@ -1,4 +1,4 @@
-package inf101.v20.lab4.grid;
+package grid;
 
 import java.util.ArrayList;
 import java.util.Iterator;

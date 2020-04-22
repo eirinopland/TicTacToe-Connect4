@@ -1,4 +1,4 @@
-package inf101.v20.lab4.grid;
+package grid;
 
 /**
  * IGrid is a generic grid 

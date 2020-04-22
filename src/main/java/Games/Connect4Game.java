@@ -12,7 +12,7 @@ import Players.HumanPlayer;
 import Players.IPlayer;
 
 public class Connect4Game implements IGame{
-	private final List<IPlayer> players; 
+	public final List<IPlayer> players; 
 	private final Connect4Board board;
 	private GameMarkers marker;
 	private final int winCondition = 4;
@@ -23,21 +23,17 @@ public class Connect4Game implements IGame{
 		
 		switch(mode) {
 			case 0: {
-				players.add(new HumanPlayer(GameMarkers.YELLOW));
-				players.add(new HumanPlayer(GameMarkers.RED));
+				players.add(new HumanPlayer(GameMarkers.YELLOW, "Player1"));
+				players.add(new HumanPlayer(GameMarkers.RED, "Player2"));
 				break;
 			}
 			case 1: {
-				players.add(new HumanPlayer(GameMarkers.YELLOW));
-				players.add(new AIPlayer(GameMarkers.RED));
-				break;
-			}
-			case 2: {
-				players.add(new AIPlayer(GameMarkers.YELLOW)); //fjern denne moden? 
-				players.add(new AIPlayer(GameMarkers.RED));
+				players.add(new HumanPlayer(GameMarkers.YELLOW, "Human player"));
+				players.add(new AIPlayer(GameMarkers.RED, "AI player"));
 				break;
 			}		
-		}	
+		}
+		board.initializeBoard();
 	}
 	
 	@Override
@@ -57,7 +53,7 @@ public class Connect4Game implements IGame{
 		Collections.shuffle(players); //Changes who starts the game randomly
 		while (!finished) {	
 			for (IPlayer player : players) {
-				System.out.println("It is " + player.getMarker() + "'s turn!");
+				System.out.println("Current player is " + player.getName() + "(" + player.getMarker() + ")");
 				int col;
 				int row;
 				do {
@@ -84,10 +80,10 @@ public class Connect4Game implements IGame{
 	public int validMove(int col, IPlayer player) {
 		if(col >= board.getWidth() || col < 0) {
 			System.out.println("Not a valid move, please enter a column between 1-7!");
-			return -1;
+			return -1; //-1 means that it is not a valid move.
 		}
-		if (isFull(col)) {
-			System.out.println("The column is full, try another one!");
+		if (board.isFull(col)) {
+			System.out.println("Column " + (col+1) + " is full, try another one!");
 			return -1;
 		}
 		for(int i = 0; i < board.getHeight(); i++) {
@@ -97,19 +93,7 @@ public class Connect4Game implements IGame{
 			}
 		}
 		return -1;
-	}
-	
-	/**
-	 * 
-	 * @param col
-	 * @return true if a column is full
-	 */
-	
-	public boolean isFull(int col) {
-		return board.get(col, board.getHeight()-1).getMarker() != GameMarkers.SPACE;
-	}
-	//Sette denne metoden i Board? 
-	
-
-	
+	}	
 }
+
+
