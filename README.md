@@ -77,22 +77,22 @@ Når du vinner vil det komme opp en melding om at "Vinneren er: ...", og derette
    
 
 ## Designvalg
-- Jeg har valgt å løse denne oppgaven ved hjelp av et tekst-basert grensesnitt. For å gjøre et tekst-basert design litt mer spennende har jeg valgt å bruke emojis (unicode) som markører i stedet for bokastaver. 
+- Jeg har valgt å løse denne oppgaven ved hjelp av et tekst-basert grensesnitt. For å gjøre et tekst-basert design litt mer spennende har jeg valgt å bruke emojis (unicode) som markører i stedet for bokstaver. 
 
 
-- I tillegg har jeg valgt å benytte meg av Grid og IGrid fra tidligere lab som var gitt fra begynnelsen. IGrid er generisk, og ved å benytte denne koden vil jeg få et grid av brikker eller marker. Griden ble en slags base for programmet, og har blitt brukt til å representere spillbrettene. 
+- I tillegg har jeg valgt å benytte meg av Grid og IGrid fra tidligere lab som var gitt fra begynnelsen. IGrid er generisk, og ved å benytte denne koden vil jeg få et grid av brikker eller markører. Griden ble en slags base for programmet, og har blitt brukt til å representere spillbrettene. 
 
 
-- Board-klassen extender Grid-klassen, og inneholder logikken og det fysiske bak hvert spill. Her finnes funksjonalitet som å slippe markør, sjekke om en posisjon allerede er tatt, sjekke vinner og uavgjort, og initialisere nytt, tomt brett. Connect4Board og TicTacToeBoard arver disse egenskapene fra Board, i tillegg til å implementere funskjonalitet som er spesifikk for det enkelte spillet. 
+- Board-klassen extender Grid-klassen, og inneholder logikken og det fysiske bak hvert spill. Her finnes funksjonalitet som å slippe markør, sjekke om en posisjon allerede er tatt, sjekke vinner og uavgjort, og initialisere nytt, tomt brett. Connect4Board og TicTacToeBoard arver disse egenskapene fra Board, i tillegg til å implementere funksjonalitet som er spesifikk for det enkelte spillbrettet. 
 
 
-- For spillere har jeg valgt å lage et interface IPlayer. Både HumanPlayer og AIPlayer implementerer denne.  Begge spillerne oppfører seg veldig likt, med unntak av at AIspilleren velger en tilfeldig kolonne og rad. HumanPlayer velger kolonne og rad ved input fra spilleren selv. For hvert spill har hver spiller en bestemt markør og et bestemt spillernavn. Her kunne jeg eventuelt latt spillerne selv bestemme hvilket navn og hvilken markør de ønsker, men dette ønsket jeg ikke å legge noe særlig vekt på.
+- For spillere har jeg valgt å lage et interface IPlayer. Både HumanPlayer og AIPlayer implementerer dette.  Begge spillerne oppfører seg veldig likt, med unntak av at AIspilleren velger en tilfeldig kolonne og rad. HumanPlayer velger kolonne og rad ved input fra spilleren selv. For hvert spill har hver spiller en bestemt markør og et bestemt spillernavn. Her kunne jeg eventuelt latt spillerne selv bestemme hvilket navn og hvilken markør de ønsker, men dette ønsket jeg ikke å legge noe særlig vekt på.
 
 
 - For markørene har jeg laget en enum GameMarkers som holder alle markørene til programmet, både CROSS, CIRCLE, YELLOW, RED og SPACE. Disse markørene skal ikke kunne endres, og derfor passer det bra med en enum her. 
 
 
-- For game-klassene er det laget et interface IGame, som både Connect4Game og TicTacToeGame implementerer. Disse klassene inneholder funksjonalitet som gjør det mulig å benytte seg av spillbrettene i spillet. De holder oversikt over hva som skjer i spillet, og sørger for at ting skjer i henhold til hvordan spillet skal oppføre seg. Man kan kalle disse klassene "kjernen" i programmet fordi de knytter sammen de øvrige delene. Metoden doTurns() sørger for at spillerne utfører hver sin runde med å legge gyldige brikker, sjekker om man har vunnet eller om det er uavgjort. 
+- For game-klassene er det laget et interface IGame, som både Connect4Game og TicTacToeGame implementerer. Disse klassene inneholder funksjonalitet som gjør det mulig å benytte seg av spillbrettene i spillet. De holder oversikt over hva som skjer i spillet, og sørger for at ting skjer i henhold til hvordan spillet skal oppføre seg. Man kan kalle disse klassene "kjernen" i programmet fordi de knytter sammen de øvrige delene. Metoden doTurns() sørger for at spillerne utfører hver sin runde med å legge gyldige brikker, sjekker om man har vunnet, eller om det er uavgjort. 
 
 
 - GameMain er den "øverste" klassen som kjører programmet ved å hente input fra brukeren om hvilket spill som skal spilles, og antall spillere. 
@@ -108,11 +108,11 @@ Programmet er separert i klasser som representerer forskjellige deler av spillen
 Bruken av abstraksjon har blant annet vært veldig nyttig for å endre enkelte klasser uten å måtte endre hele programmet
 
 ### Erfaring – hvilke valg viste seg å være gode / dårlige?
-I begynnelsen valgte jeg å ha et interface "IBoard", men oppdaget etterhvert at board-metodene til begge spillene var svært like. Jeg valgte derfor å lage en klasse "Board" i stedet som implementerer alle metodene som er like for begge spill og som arver egenskapene til Grid. Connect4Board og TicTacToeBoard arver igjen egenskapene til Board-klassen, i tillegg til å implementere metoder som er spesifikke for hvert enkelt spill. På denne måten ble det bedre oversikt, og mindre overflødig kode. Dette er et godt eksempel på gjenbruk av kode. 
+I begynnelsen valgte jeg å ha et interface "IBoard", men oppdaget etterhvert at board-metodene til begge spillene var svært like. Jeg valgte derfor å lage en klasse "Board" i stedet som implementerer alle metodene som er like for begge spill og som arver egenskapene til Grid. Connect4Board og TicTacToeBoard arver igjen egenskapene til Board-klassen, i tillegg til å implementere metoder som er spesifikke for hvert enkelt spill. På denne måten ble det bedre oversikt, og mindre overflødig kode.
 
 
 ## Testing
-Utviklingen av programmet ble i begynnelsen hovedsakelig gjort ved å prøve og feile. Jeg kjørte spillet fra mian, og prøvde meg fram for å se i hvilke deler av spillet det lå feill  
+Utviklingen av programmet ble i begynnelsen hovedsakelig utført ved å prøve og feile. Spillet ble kjørt fra main, og jeg prøvde meg fram for å se i hvilke deler av spillet det lå feil. 
 
 I etterkant har jeg laget og utført tester ved hjelp av JUnit. Her blir de viktigste metodene i programmet testet for hvert spill. Disse testene sjekker at output samsvarer med input. Det var i løpet av denne testingen jeg oppdaget feil som kunne vært vanskelig å oppdage kun ved å kjøre programmet, så denne testingen har vært veldig nyttig. Jeg oppdaget blant annet at jeg hadde byttet om på horizontalWin og verticalWin, noe som ikke ble oppdaget da koden bare skulle sjekke vinner (altså enten horisontal, vertikal eller diagonal). 
 
