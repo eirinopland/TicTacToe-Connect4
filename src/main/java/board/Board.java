@@ -64,7 +64,7 @@ public class Board extends Grid<Markers>{
 	}
 	
 	/**
-	 * 
+	 * Checks if win conditions are met.
 	 * @param col
 	 * @param row
 	 * @param winCondition is decided in game class for each game
@@ -84,7 +84,7 @@ public class Board extends Grid<Markers>{
 	}
 
 	/**
-	 * 
+	 *  
 	 * @param col
 	 * @param row
 	 * @param winCondition

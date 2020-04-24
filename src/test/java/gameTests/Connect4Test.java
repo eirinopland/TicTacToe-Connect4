@@ -40,9 +40,16 @@ public class Connect4Test {
 		assertEquals(board.validMove(8, player), -1); //-1 means that it is not a valid move 
 	}
 	
+	/**
+	 * Tests that choosing a column that is full, is not a valid move; 
+	 */
 	@Test
 	void testNotValidMoveFullColumn() {
-		
+		board.initializeBoard();
+		for (int i = 0; i < board.getHeight(); i++) {
+			board.dropMarker(1, i, player.getMarker());
+		}
+		assertEquals(board.validMove(1, player), -1); //-1 means that it is not a valid move
 	}
 	
 	/**
@@ -220,8 +227,6 @@ public class Connect4Test {
 			}
 		}
 		assertTrue(board.isDraw());
-	}
-	
-	
+	}	
 
 }

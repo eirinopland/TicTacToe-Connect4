@@ -4,8 +4,16 @@ import markers.GameMarkers;
 
 public interface IPlayer {
 	
+	/**
+	 * Gets the name of the player 
+	 * @return name
+	 */
 	String getName();
 	
+	/**
+	 * Gets the players marker
+	 * @return marker
+	 */
 	GameMarkers getMarker();
 
 	/**
