@@ -1,8 +1,8 @@
-package Players;
+package players;
 
 import java.util.Random;
 
-import Markers.GameMarkers;
+import markers.GameMarkers;
 
 
 public class AIPlayer implements IPlayer{
@@ -10,6 +10,11 @@ public class AIPlayer implements IPlayer{
 	public static final Random random = new Random();
 	private String name;
 	
+	/**
+	 * Construct an AI player with the given marker and name.
+	 * @param marker
+	 * @param name
+	 */
 	public AIPlayer(GameMarkers marker, String name) {
 		this.marker = marker;
 		this.name = name; 

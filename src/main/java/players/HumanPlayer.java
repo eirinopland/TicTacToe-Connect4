@@ -1,14 +1,19 @@
-package Players;
+package players;
 
 import java.util.Scanner;
 
-import Markers.GameMarkers;
+import markers.GameMarkers;
 
 
 public class HumanPlayer implements IPlayer {
 	private GameMarkers marker;
 	private String name; 
 	
+	/**
+	 * Construct a human player with the given marker and name.
+	 * @param marker
+	 * @param name
+	 */
 	public HumanPlayer(GameMarkers marker, String name) {
 		this.marker = marker; 
 		this.name = name; 

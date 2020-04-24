@@ -1,6 +1,6 @@
-package Board;
+package board;
 
-import Markers.GameMarkers;
+import markers.GameMarkers;
 
 public interface IBoard {
 	

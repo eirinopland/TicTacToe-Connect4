@@ -1,22 +1,26 @@
-package Games;
+package games;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import Board.TicTacToeBoard;
-import Markers.GameMarkers;
-import Players.AIPlayer;
-import Players.HumanPlayer;
-import Players.IPlayer;
+import board.TicTacToeBoard;
+import markers.GameMarkers;
+import players.AIPlayer;
+import players.HumanPlayer;
+import players.IPlayer;
 
 
 public class TicTacToeGame implements IGame{
-	private final List<IPlayer> players; 
+	public final List<IPlayer> players; 
 	private final TicTacToeBoard board;
-	private final int winCondition = 3;
+	private final int winCondition = 3; //How many markers you need in a row to win the game.
 	
+	/**
+	 * Construct a tic tac toe game with the given player mode. 
+	 * @param mode
+	 */
 	public TicTacToeGame(int mode) {
 		players = new ArrayList<IPlayer>();
 		board = new TicTacToeBoard(3, 3);
@@ -75,6 +79,13 @@ public class TicTacToeGame implements IGame{
 		}
 	}
 	
+	/**
+	 * Checks if a given column and row is outside the board or taken, or if it is a valid move. 
+	 * @param col
+	 * @param row
+	 * @param player
+	 * @return false if it is not a valid move, true if it is a valid move
+	 */
 	public boolean validMove(int col, int row, IPlayer player) {
 		if(col >= board.getWidth() || col < 0 || row >= board.getHeight() || row < 0) {
 			System.out.println("Not a valid move! Please type row and column number between 1-3.");
@@ -82,6 +93,7 @@ public class TicTacToeGame implements IGame{
 		}
 		if (board.isTaken(col, row)) {
 			System.out.println("This cell is taken! Please try another one.");
+			return false; 
 		}
 		return !board.isTaken(col, row);
 	}

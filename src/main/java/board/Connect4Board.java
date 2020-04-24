@@ -1,18 +1,17 @@
-package Board;
+package board;
 
-import Markers.GameMarkers;
+import markers.GameMarkers;
 
 public class Connect4Board extends Board{
 
 	/**
-	 * Construct a grid with the given dimensions.
+	 * Construct a game board with the given dimensions. 
 	 * @param width
 	 * @param height
 	 */
 	public Connect4Board(int width, int height) {
 		super(width, height);
 	}
-	
 	
 	/**
 	 * Displays the board to the screen. 
@@ -33,7 +32,6 @@ public class Connect4Board extends Board{
 	 * @param col
 	 * @return true if a column is full
 	 */
-	
 	public boolean isFull(int col) {
 		return get(col, getHeight()-1).getMarker() != GameMarkers.SPACE;
 	}

@@ -1,9 +1,9 @@
-package Main;
+package main;
 
 import java.util.Scanner;
 
-import Games.Connect4Game;
-import Games.TicTacToeGame;
+import games.Connect4Game;
+import games.TicTacToeGame;
 
 public class GameMain {
 	public static void main(String[] args) {
@@ -16,7 +16,6 @@ public class GameMain {
 		System.out.println("1) Human against human");
 		System.out.println("2) Human against AI");
 		int gameMode = sc.nextInt();
-		
 		if (gameChoice == 1) {			
 			if(gameMode == 1) {
 				TicTacToeGame game = new TicTacToeGame(0);

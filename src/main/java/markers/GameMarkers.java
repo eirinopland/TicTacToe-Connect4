@@ -1,4 +1,4 @@
-package Markers;
+package markers;
 
 public enum GameMarkers {
 	CROSS, 

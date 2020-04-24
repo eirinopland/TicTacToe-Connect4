@@ -1,4 +1,4 @@
-package Markers;
+package markers;
 
 
 public class Markers {
@@ -8,6 +8,10 @@ private GameMarkers marker;
 		this.marker = (GameMarkers) marker; 
 	}
 	
+	/**
+	 * Get the printable marker symbol for each marker. 
+	 * @return
+	 */
 	public String getMarkerSymbol() {
 		switch(marker) {
 		case CROSS:
@@ -28,6 +32,14 @@ private GameMarkers marker;
 		return marker; 
 	}
 	
+	public void setMarker(GameMarkers marker) {
+		this.marker = marker; 
+	}
+	
+	/**
+	 * 
+	 * @return true if a cell contains a marker that is not SPACE. 
+	 */
 	public boolean isFilled() {
 		if (marker == GameMarkers.SPACE) {
 			return false; 
@@ -35,9 +47,5 @@ private GameMarkers marker;
 		else {
 			return true; 
 		}	 
-	}
-	
-	public void setMarker(GameMarkers marker) {
-		this.marker = marker; 
 	}
 }

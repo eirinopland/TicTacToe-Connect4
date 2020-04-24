@@ -1,4 +1,4 @@
-package inf101.v20.lab4.grid;
+package gridTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
