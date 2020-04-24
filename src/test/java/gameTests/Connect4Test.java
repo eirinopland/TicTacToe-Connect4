@@ -37,7 +37,7 @@ public class Connect4Test {
 	void testNotValidMoveOutsideBoard() {
 		Connect4Board board = new Connect4Board(7, 6);
 		board.initializeBoard();
-		assertEquals(game.validMove(8, player), -1); //-1 means that it is not a valid move 
+		assertEquals(board.validMove(8, player), -1); //-1 means that it is not a valid move 
 	}
 	
 	@Test

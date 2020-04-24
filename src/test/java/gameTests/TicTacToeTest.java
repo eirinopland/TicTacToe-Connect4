@@ -38,13 +38,13 @@ public class TicTacToeTest {
 	@Test
 	void testNotValidMoveOutsideBoard() {
 		board.initializeBoard();
-		assertFalse(game.validMove(4, 4, player));
+		assertFalse(board.validMove(4, 4, player));
 	}
 	
 	@Test
 	void testIsValidMove() {
 		board.initializeBoard();
-		assertTrue(game.validMove(0, 1, player));
+		assertTrue(board.validMove(0, 1, player));
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class TicTacToeTest {
 	void testCanNotPlaceMarkerIfTaken() {
 		board.initializeBoard();
 		board.dropMarker(2, 2, player.getMarker());
-		assertFalse(game.validMove(2, 2, player));
+		assertFalse(board.validMove(2, 2, player));
 	}
 	
 	/**

@@ -21,7 +21,7 @@ private GameMarkers marker;
 		case YELLOW:
 			return "\ud83d\udfe1";
 		case RED:
-			return "\uD83D\uDD34";
+			return "\uD83D\uDD34"; 
 		case SPACE: 
 			return "  ";
 		}

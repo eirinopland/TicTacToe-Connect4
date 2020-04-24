@@ -33,6 +33,10 @@ public class HumanPlayer implements IPlayer {
 	public int pickColumn(int max) {
 		System.out.println("In what column would you like to place your marker?");
 		Scanner in = new Scanner(System.in);
+		while (!in.hasNextInt()) {
+			System.out.println("Invalid column number. Please enter only digits.");
+			in.next();
+		}
 		int colInput = in.nextInt()-1;
 		return colInput;
 		
@@ -42,6 +46,10 @@ public class HumanPlayer implements IPlayer {
 	public int pickRow(int max) {
 		System.out.println("In what row would you like to place your marker?");
 		Scanner in = new Scanner(System.in);
+		while (!in.hasNextInt()) {
+			System.out.println("Invalid row number. Please enter only digits.");
+			in.next();
+		}
 		int rowInput = in.nextInt()-1;
 		return rowInput;
 	}

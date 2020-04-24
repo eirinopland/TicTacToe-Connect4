@@ -62,7 +62,7 @@ public class TicTacToeGame implements IGame{
 				do {
 					col = player.pickColumn(board.getWidth());
 					row = player.pickRow(board.getHeight());
-				} while(!validMove(col, row, player));
+				} while(!board.validMove(col, row, player));
 				board.dropMarker(col, row, player.getMarker());
 				board.printBoard();
 				if(board.checkWin(col, row, winCondition)) {
@@ -77,24 +77,5 @@ public class TicTacToeGame implements IGame{
 				}
 			}
 		}
-	}
-	
-	/**
-	 * Checks if a given column and row is outside the board or taken, or if it is a valid move. 
-	 * @param col
-	 * @param row
-	 * @param player
-	 * @return false if it is not a valid move, true if it is a valid move
-	 */
-	public boolean validMove(int col, int row, IPlayer player) {
-		if(col >= board.getWidth() || col < 0 || row >= board.getHeight() || row < 0) {
-			System.out.println("Not a valid move! Please type row and column number between 1-3.");
-			return false; 
-		}
-		if (board.isTaken(col, row)) {
-			System.out.println("This cell is taken! Please try another one.");
-			return false; 
-		}
-		return !board.isTaken(col, row);
 	}
 }

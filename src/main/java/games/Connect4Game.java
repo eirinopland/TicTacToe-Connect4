@@ -14,7 +14,6 @@ import players.IPlayer;
 public class Connect4Game implements IGame{
 	public final List<IPlayer> players; 
 	private final Connect4Board board;
-	private GameMarkers marker;
 	private final int winCondition = 4; //How many markers you need in a row to win the game.
 	
 	/**
@@ -62,7 +61,7 @@ public class Connect4Game implements IGame{
 				int row;
 				do {
 					col = player.pickColumn(board.getWidth());
-					row = validMove(col, player);
+					row = board.validMove(col, player);
 				} while(row < 0);
 				board.dropMarker(col, row, player.getMarker());
 				board.printBoard();
@@ -78,30 +77,6 @@ public class Connect4Game implements IGame{
 				}
 			}
 		}
-	}
-	
-	/**
-	 * Checks if your column input is a valid move, or if it is outside the board. 
-	 * @param col
-	 * @param player
-	 * @return -1 if it is not a valid move, i(row) if it is a valid move
-	 */
-	public int validMove(int col, IPlayer player) {
-		if(col >= board.getWidth() || col < 0) {
-			System.out.println("Not a valid move, please enter a column between 1-7!");
-			return -1; 
-		}
-		if (board.isFull(col)) {
-			System.out.println("Column " + (col+1) + " is full, try another one!");
-			return -1;
-		}
-		for(int i = 0; i < board.getHeight(); i++) { 
-			if (!board.isTaken(col, i)) {
-				board.get(col, i).setMarker(marker);
-				return i; //Get the lowest row(i) available
-			}
-		}
-		return -1;
 	}	
 }
 
